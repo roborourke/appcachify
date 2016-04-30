@@ -57,6 +57,11 @@ if ( ! class_exists( 'appcachify' ) ) {
 
 		public function __construct() {
 
+			// Lets not do this on local
+			if ( ! defined( 'WP_CACHE' ) || ! WP_CACHE ) {
+				return;
+			}
+
 			if ( ! is_admin() )
 				add_action( 'wp_footer', array( $this, 'manifest_page_frame' ) );
 
